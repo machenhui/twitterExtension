@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://yui.yahooapis.com/3.4.1/build/yui/yui-min.js"></script>
+<script>
+
+		(function() {
+
+            var  script = document.createElement('script');
+
+           	script.src = 'http://jsnewt.sohu.com/j-src/kola/Package.js';
+
+			script.type = 'text/javascript';
+			script.charset="utf-8";
+			document.getElementsByTagName('head')[0].appendChild(script);
+
+            script = null;
+
+
+
+		    window.kola = function() {
+
+			var arr = [this];
+
+			for (var i = 0, il = arguments.length; i < il; i++) {
+
+					  arr.push(arguments[i]);
+
+			}
+
+				kola._cache.push(arr);
+
+			};
+
+			 kola._cache = [];
+
+
+
+		})();
+
+
+
+</script>
+
+
+
+<title>弹出提示</title>
+</head>
+<body>
+<form action="">
+<fieldset class="js_autoPackageXML" >
+<input type="text" />
+<input type="button" value="生成PacakgeXML"/>
+</fieldset>
+</form>
+<script type="text/javascript" src="/js/popup.js"></script>
+
+</body>
+</html>

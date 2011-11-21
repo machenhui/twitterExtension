@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="GBK">
+
+<title>Background</title>
+
+<script src="http://yui.yahooapis.com/3.4.1/build/yui/yui-debug.js"></script>
+<!--
+<script src="../js/yui3/build/yui/yui-debug.js"></script>-->
+<script type="text/javascript">
+
+YUI({
+       lang: 'ko-KR,en-GB,zh-Hant-TW', // languages in order of preference
+       base: '../js/yui3/build/', // the base path to the YUI install.  Usually not needed because the default is the same base path as the yui.js include file
+       charset: 'utf-8', // specify a charset for inserted nodes, default is utf-8
+//       loadOptional: true, // automatically load optional dependencies, default false
+//       combine: true, // use the Yahoo! CDN combo service for YUI resources, default is true unless 'base' has been changed
+       filter: 'raw', // apply a filter to load the raw or debug version of YUI files
+       timeout: 10000, // specify the amount of time to wait for a node to finish loading before aborting
+//       insertBefore: 'customstyles', // The insertion point for new nodes
+       // one or more external modules that can be loaded along side of YUI.  This is the only pattern
+       // that was supported in 3.0.0 for declaring external modules.  3.1.0 adds 'groups' support,
+       // which is an easier way to define a group of modules.  See below.
+	debug:true,
+       modules:  {
+          /* yui2_yde_datasource: {
+               fullpath: 'http://yui.yahooapis.com/combo?2.7.0/build/yahoo-dom-event/yahoo-dom-event.js&2.7.0/build/datasource/datasource-min.js'
+           },
+           yui_flot: {
+               fullpath: 'http://bluesmoon.github.com/yui-flot/yui.flot.js',
+               requires: ['yui2_yde_datasource']
+           },*/
+           popup: {
+               fullpath: '../js/popupTest.js',
+               requires: ['node']
+           }
+       }
+}).use('popup','animation','dd','console', function(Y) {
+     //console.log(Y);
+	Y.log(Y);
+    // All YUI modules required to get drag and drop to work are now loaded.
+});
+</script>
+<!--
+<script type="text/javascript" src="../js/popupTest.js"></script>
+-->
+</head>
+<body>
+<!--<iframe src="http://m.t.sohu.com/userData.html"></iframe>-->
+<script type="text/javascript">
+  /*    if (window.webkitNotifications.checkPermission() == 0) {
+        // you can pass any url as a parameter
+        window.webkitNotifications.createNotification("", "测试Title","message").show();
+    } else {
+        window.webkitNotifications.requestPermission();
+    }*/
+    //var source = new EventSource('http://m.t.sohu.com/update.cgi');
+ /*   var worker= new SharedWorker("http://m.t.sohu.com/js/TestWorker.js");
+    console.log(worker);
+    worker.onmessage=function(event){
+        console.log("form SharedWorker"+event.data);
+        window.webkitNotifications.createNotification("", "测试Title",event.data).show();
+    }*/
+/*   kola(["sohutm.data.Ajax","jquery.Core"],function(Ajax,$) {
+   function longPush(){
+
+      $.ajax({
+          url:"http://comet.t.sohu.com/broadcast/09jdfsjtevve_pub?channel=talk123",
+          //param:{message:"1,"+new Date().getTime(),type:"showMessage"},
+          type:"POST",
+          data:'jsonpCallBack("helloworld"'+new Date().getTime()+')',
+          dataType : 'text',
+          success:function(response) {
+              //console.log(response);
+               //longPull();
+          },
+          failure:function(response) {
+             // console.log(response);
+          }
+      });
+   }
+  window.setInterval(function(){
+     longPush();
+  },1000);
+   //jsonpCallBack({message:"1,"+new Date().getTime(),type:"showMessage"})
+   function jsonpCallBack(data){
+       console.log(data);
+   }
+   function longPull(){
+          console.log("拉数据开始");
+           $.ajax({
+               url:"http://comet.t.sohu.com/broadcast/sub?channel=talk123",
+               param:{},
+               method:"GET",
+               success:function(response) {
+                   console.log(response);
+                    longPull();
+               },
+               failure:function(response) {
+                    console.log("拉数据开始");
+                   console.log(response);
+               }
+           });
+        }
+
+          longPull();
+
+
+  }); */
+
+  var clickHandler = function(e) {
+	    var url = e.pageUrl;
+	    var buzzPostUrl = "http://www.google.com/buzz/post?";
+	    
+	    if (e.selectionText) {
+	        // The user selected some text, put this in the message.
+	        buzzPostUrl += "message=" + encodeURI(e.selectionText) + "&";
+	    }
+
+	    if (e.mediaType === "image") {
+	        buzzPostUrl += "imageurl=" + encodeURI(e.srcUrl) + "&";
+	    }
+
+	    if (e.linkUrl) {
+	        // The user wants to buzz a link.
+	        url = e.linkUrl;
+	    }
+
+	    buzzPostUrl += "url=" + encodeURI(url);
+
+	    // Open the page up.
+	    chrome.tabs.create(
+	          {"url" : buzzPostUrl });
+	};
+	chrome.contextMenus.create({
+	    "title": "Buzz This",
+	    "contexts": ["page", "selection", "image", "link"],
+	    "onclick" : clickHandler
+	  });
+
+</script>
+
+</body>
+</html>
