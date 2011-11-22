@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="GBK">
+
+<title>Background</title>
+
+<script src="http://yui.yahooapis.com/3.4.1/build/yui/yui-debug.js"></script>
+<!--
+<script src="../js/yui3/build/yui/yui-debug.js"></script>-->
+
+<!--
+<script type="text/javascript" src="../js/popupTest.js"></script>
+-->
+</head>
+<body>
+<!--<iframe src="http://m.t.sohu.com/userData.html"></iframe>-->
+<script type="text/javascript">
+  /*    if (window.webkitNotifications.checkPermission() == 0) {
+        // you can pass any url as a parameter
+        window.webkitNotifications.createNotification("", "测试Title","message").show();
+    } else {
+        window.webkitNotifications.requestPermission();
+    }*/
+    //var source = new EventSource('http://m.t.sohu.com/update.cgi');
+ /*   var worker= new SharedWorker("http://m.t.sohu.com/js/TestWorker.js");
+    console.log(worker);
+    worker.onmessage=function(event){
+        console.log("form SharedWorker"+event.data);
+        window.webkitNotifications.createNotification("", "测试Title",event.data).show();
+    }*/
+/*   kola(["sohutm.data.Ajax","jquery.Core"],function(Ajax,$) {
+   function longPush(){
+
+      $.ajax({
+          url:"http://comet.t.sohu.com/broadcast/09jdfsjtevve_pub?channel=talk123",
+          //param:{message:"1,"+new Date().getTime(),type:"showMessage"},
+          type:"POST",
+          data:'jsonpCallBack("helloworld"'+new Date().getTime()+')',
+          dataType : 'text',
+          success:function(response) {
+              //console.log(response);
+               //longPull();
+          },
+          failure:function(response) {
+             // console.log(response);
+          }
+      });
+   }
+  window.setInterval(function(){
+     longPush();
+  },1000);
+   //jsonpCallBack({message:"1,"+new Date().getTime(),type:"showMessage"})
+   function jsonpCallBack(data){
+       console.log(data);
+   }
+   function longPull(){
+          console.log("拉数据开始");
+           $.ajax({
+               url:"http://comet.t.sohu.com/broadcast/sub?channel=talk123",
+               param:{},
+               method:"GET",
+               success:function(response) {
+                   console.log(response);
+                    longPull();
+               },
+               failure:function(response) {
+                    console.log("拉数据开始");
+                   console.log(response);
+               }
+           });
+        }
+
+          longPull();
+
+
+  }); */
+
+  var clickHandler = function(e) {
+	    var url = e.pageUrl;
+	    var buzzPostUrl = "http://www.google.com/buzz/post?";
+	    
+	    if (e.selectionText) {
+	        // The user selected some text, put this in the message.
+	        buzzPostUrl += "message=" + encodeURI(e.selectionText) + "&";
+	    }
+
+	    if (e.mediaType === "image") {
+	        buzzPostUrl += "imageurl=" + encodeURI(e.srcUrl) + "&";
+	    }
+
+	    if (e.linkUrl) {
+	        // The user wants to buzz a link.
+	        url = e.linkUrl;
+	    }
+
+	    buzzPostUrl += "url=" + encodeURI(url);
+
+	    // Open the page up.
+	    /*chrome.tabs.create(
+	          {"url" : buzzPostUrl });
+            chrome.tabs.getCurrent(function(tab){
+                 console.log(tab);    
+                 console.log(tab.url);
+	         share(screen,tab,encodeURIComponent,'','','','','','utf-8');
+	    });*/	
+
+            share(screen,{url:e.pageUrl,title:"
