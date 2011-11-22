@@ -8,40 +8,7 @@
 <script src="http://yui.yahooapis.com/3.4.1/build/yui/yui-debug.js"></script>
 <!--
 <script src="../js/yui3/build/yui/yui-debug.js"></script>-->
-<script type="text/javascript">
 
-YUI({
-       lang: 'ko-KR,en-GB,zh-Hant-TW', // languages in order of preference
-       base: '../js/yui3/build/', // the base path to the YUI install.  Usually not needed because the default is the same base path as the yui.js include file
-       charset: 'utf-8', // specify a charset for inserted nodes, default is utf-8
-//       loadOptional: true, // automatically load optional dependencies, default false
-//       combine: true, // use the Yahoo! CDN combo service for YUI resources, default is true unless 'base' has been changed
-       filter: 'raw', // apply a filter to load the raw or debug version of YUI files
-       timeout: 10000, // specify the amount of time to wait for a node to finish loading before aborting
-//       insertBefore: 'customstyles', // The insertion point for new nodes
-       // one or more external modules that can be loaded along side of YUI.  This is the only pattern
-       // that was supported in 3.0.0 for declaring external modules.  3.1.0 adds 'groups' support,
-       // which is an easier way to define a group of modules.  See below.
-	debug:true,
-       modules:  {
-          /* yui2_yde_datasource: {
-               fullpath: 'http://yui.yahooapis.com/combo?2.7.0/build/yahoo-dom-event/yahoo-dom-event.js&2.7.0/build/datasource/datasource-min.js'
-           },
-           yui_flot: {
-               fullpath: 'http://bluesmoon.github.com/yui-flot/yui.flot.js',
-               requires: ['yui2_yde_datasource']
-           },*/
-           popup: {
-               fullpath: '../js/popupTest.js',
-               requires: ['node']
-           }
-       }
-}).use('popup','animation','dd','console', function(Y) {
-     //console.log(Y);
-	Y.log(Y);
-    // All YUI modules required to get drag and drop to work are now loaded.
-});
-</script>
 <!--
 <script type="text/javascript" src="../js/popupTest.js"></script>
 -->
@@ -51,7 +18,7 @@ YUI({
 <script type="text/javascript">
   /*    if (window.webkitNotifications.checkPermission() == 0) {
         // you can pass any url as a parameter
-        window.webkitNotifications.createNotification("", "≤‚ ‘Title","message").show();
+        window.webkitNotifications.createNotification("", "¬≤√¢√ä√îTitle","message").show();
     } else {
         window.webkitNotifications.requestPermission();
     }*/
@@ -60,7 +27,7 @@ YUI({
     console.log(worker);
     worker.onmessage=function(event){
         console.log("form SharedWorker"+event.data);
-        window.webkitNotifications.createNotification("", "≤‚ ‘Title",event.data).show();
+        window.webkitNotifications.createNotification("", "¬≤√¢√ä√îTitle",event.data).show();
     }*/
 /*   kola(["sohutm.data.Ajax","jquery.Core"],function(Ajax,$) {
    function longPush(){
@@ -88,7 +55,7 @@ YUI({
        console.log(data);
    }
    function longPull(){
-          console.log("¿≠ ˝æ›ø™ º");
+          console.log("√Ä¬≠√ä√Ω≈∏√ù¬ø¬™√ä≈í");
            $.ajax({
                url:"http://comet.t.sohu.com/broadcast/sub?channel=talk123",
                param:{},
@@ -98,7 +65,7 @@ YUI({
                     longPull();
                },
                failure:function(response) {
-                    console.log("¿≠ ˝æ›ø™ º");
+                    console.log("√Ä¬≠√ä√Ω≈∏√ù¬ø¬™√ä≈í");
                    console.log(response);
                }
            });
@@ -130,15 +97,77 @@ YUI({
 	    buzzPostUrl += "url=" + encodeURI(url);
 
 	    // Open the page up.
-	    chrome.tabs.create(
+	    /*chrome.tabs.create(
 	          {"url" : buzzPostUrl });
+	    chrome.tabs.getCurrent(function(tab){
+                     alert(tab);	
+		});*/
+            chrome.windows.getCurrent(function(window){
+                 
+               chrome.tabs.getSelected(window.id,function(tab){
+                     
+			 share(screen,tab,encodeURIComponent,'','','','','','utf-8');	
+		}); 
+	        // share(screen,tab,encodeURIComponent,'','','','','','utf-8');
+
+	    });	
+
+           
+           
 	};
+ function share(s,d,e,r,l,p,t,z,c){
+	var f='http://t.sohu.com/third/post.jsp?',u=z||d.url,p=['&url=',e(u),'&title=',e(t||d.title),'&content=',c||'gb2312','&pic=',e(p||'')].join('');
+function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=660,height=470,left=',(s.width-660)/2,',top=',(s.height-470)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else a();
+
+};
+
+
+
 	chrome.contextMenus.create({
 	    "title": "Buzz This",
 	    "contexts": ["page", "selection", "image", "link"],
 	    "onclick" : clickHandler
 	  });
 
+
+</script>
+<script type="text/javascript">
+
+YUI({
+       lang: 'ko-KR,en-GB,zh-Hant-TW', // languages in order of preference
+       base: '../js/yui3/build/', // the base path to the YUI install.  Usually not needed because the default is the same base path as the yui.js include file
+       charset: 'utf-8', // specify a charset for inserted nodes, default is utf-8
+//       loadOptional: true, // automatically load optional dependencies, default false
+//       combine: true, // use the Yahoo! CDN combo service for YUI resources, default is true unless 'base' has been changed
+       filter: 'raw', // apply a filter to load the raw or debug version of YUI files
+       timeout: 10000, // specify the amount of time to wait for a node to finish loading before aborting
+//       insertBefore: 'customstyles', // The insertion point for new nodes
+       // one or more external modules that can be loaded along side of YUI.  This is the only pattern
+       // that was supported in 3.0.0 for declaring external modules.  3.1.0 adds 'groups' support,
+       // which is an easier way to define a group of modules.  See below.
+	debug:true,
+       modules:  {
+          /* yui2_yde_datasource: {
+               fullpath: 'http://yui.yahooapis.com/combo?2.7.0/build/yahoo-dom-event/yahoo-dom-event.js&2.7.0/build/datasource/datasource-min.js'
+           },
+           yui_flot: {
+               fullpath: 'http://bluesmoon.github.com/yui-flot/yui.flot.js',
+               requires: ['yui2_yde_datasource']
+           },*/
+           popup: {
+               fullpath: '../js/popupTest.js',
+               requires: ['node']
+           },
+	   background:{
+	     fullpath: '../js/background/Background.js',
+               requires: ['node']
+	 }
+       }
+}).use('popup','background','console', function(Y) {
+     //console.log(Y);
+	Y.log(Y);
+    // All YUI modules required to get drag and drop to work are now loaded.
+});
 </script>
 
 </body>

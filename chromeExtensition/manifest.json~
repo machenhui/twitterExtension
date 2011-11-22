@@ -14,7 +14,7 @@
     {
       "matches": ["http://www.google.com/*","http://yui.yahooapis.com/*"],
       "css": ["/css/popup.css"],
-      "js": ["/js/popup.js","/js/popupTest.js","/js/yui3/build/yui/yui-min.js"]
+      "js": ["/js/popup.js","/js/popupTest.js","/js/background/Background.js"]
     }
   ],
   "permissions": [
