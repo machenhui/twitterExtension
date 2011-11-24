@@ -115,8 +115,9 @@
            
            
 	};
+var extensionAppkey="CgWQISmOCe4Z0yE1NuXa";
  function share(s,d,e,r,l,p,t,z,c){
-	var f='http://t.sohu.com/third/post.jsp?',u=z||d.url,p=['&url=',e(u),'&title=',e(t||d.title),'&content=',c||'gb2312','&pic=',e(p||'')].join('');
+	var f='http://t.sohu.com/third/post.jsp?',u=z||d.url,p=['&appkey=',extensionAppkey,'&url=',e(u),'&title=',e(t||d.title),'&content=',c||'gb2312','&pic=',e(p||'')].join('');
 function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=660,height=470,left=',(s.width-660)/2,',top=',(s.height-470)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else a();
 
 };
