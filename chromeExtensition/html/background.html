@@ -78,23 +78,25 @@
 
   var clickHandler = function(e) {
 	    var url = e.pageUrl;
-	    var buzzPostUrl = "http://www.google.com/buzz/post?";
+	    var selectedText='';
+	    var selectedImage='';
+            var selectedUrl='';
 	    
 	    if (e.selectionText) {
 	        // The user selected some text, put this in the message.
-	        buzzPostUrl += "message=" + encodeURI(e.selectionText) + "&";
+	        selectedText =e.selectionText;
 	    }
 
 	    if (e.mediaType === "image") {
-	        buzzPostUrl += "imageurl=" + encodeURI(e.srcUrl) + "&";
+	        selectedImage =e.srcUrl;
 	    }
 
 	    if (e.linkUrl) {
 	        // The user wants to buzz a link.
-	        url = e.linkUrl;
+	        selectedUrl = e.linkUrl;
 	    }
 
-	    buzzPostUrl += "url=" + encodeURI(url);
+	    
 
 	    // Open the page up.
 	    /*chrome.tabs.create(
@@ -105,8 +107,8 @@
             chrome.windows.getCurrent(function(window){
                  
                chrome.tabs.getSelected(window.id,function(tab){
-                     
-			 share(screen,tab,encodeURIComponent,'','','','','','utf-8');	
+                         
+			 share(screen,tab,encodeURIComponent,'','',selectedImage,selectedText,selectedUrl,'utf-8');	
 		}); 
 	        // share(screen,tab,encodeURIComponent,'','','','','','utf-8');
 
@@ -115,21 +117,34 @@
            
            
 	};
-var extensionAppkey="CgWQISmOCe4Z0yE1NuXa";
+var extensionAppkey="ZVJQcRAQ4Cu8Y7n4IBtp";
+/**
+  *s screen
+  *d window 对象
+  *e encodeURIComponent 编码方法
+  *r   未知
+  *l   未知
+  *p   图片地址
+  *t  发送的文本内容
+  *z  分享的URL 地址
+  *c  字符集编码方式 gb2312  utf-8
+  */
  function share(s,d,e,r,l,p,t,z,c){
-	var f='http://t.sohu.com/third/post.jsp?',u=z||d.url,p=['&appkey=',extensionAppkey,'&url=',e(u),'&title=',e(t||d.title),'&content=',c||'gb2312','&pic=',e(p||'')].join('');
+	var f='http://t.sohu.com/third/post.jsp?',u=z||d.url,p=[
+'&appkey=',extensionAppkey,
+'&url=',e(u),'&title=',e(t||d.title),'&content=',c||'gb2312','&pic=',e(p||'')].join('');
 function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=660,height=470,left=',(s.width-660)/2,',top=',(s.height-470)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else a();
 
 };
 
 
 
-	chrome.contextMenus.create({
+	var contextMenu=chrome.contextMenus.create({
 	    "title": "分享到搜狐微博",
 	    "contexts": ["page", "selection", "image", "link"],
 	    "onclick" : clickHandler
 	  });
-
+      //alert(contextMenu);
 
 </script>
 <script type="text/javascript">
@@ -154,22 +169,34 @@ YUI({
            yui_flot: {
                fullpath: 'http://bluesmoon.github.com/yui-flot/yui.flot.js',
                requires: ['yui2_yde_datasource']
-           },*/
+           },
            popup: {
                fullpath: '../js/popupTest.js',
                requires: ['node']
-           },
+           },*/
 	   background:{
 	     fullpath: '../js/background/Background.js',
-               requires: ['node']
-	 }
+               requires: ['base','oop']
+	   },
+	   ajax:{
+		fullpath: '../js/background/Ajax.js',
+               requires: ['base','oop']
+		},
+	  notification:{
+	       fullpath: '../js/background/Notification.js',
+               requires: ['base','oop','ajax']
+	  }
        }
-}).use('popup','background','console', function(Y) {
+}).use('background','console', 'notification',function(Y) {
      //console.log(Y);
-	Y.log(Y);
+	//Y.log(Y);
     // All YUI modules required to get drag and drop to work are now loaded.
+    //var background=new Y.extension.Background();
+    //background.addTwitter("asdfasdf","");
+   var notification=new Y.extension.Notification();
 });
 </script>
 
 </body>
 </html>
+
