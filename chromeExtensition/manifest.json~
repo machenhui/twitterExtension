@@ -14,11 +14,12 @@
     {
       "matches": ["http://www.google.com/*","http://yui.yahooapis.com/*"],
       "css": ["/css/popup.css"],
-      "js": ["/js/popup.js","/js/popupTest.js","/js/background/Background.js"]
+      "js": ["/js/popup.js","/js/popupTest.js","/js/background/Background.js","/js/background/Ajax.js","/js/background/Notification.js"]
     }
   ],
   "permissions": [
     "contextMenus",
+    "tabs",
     "http://*.sohu.com/",
     "http://api.flickr.com/",
     "notifications"
