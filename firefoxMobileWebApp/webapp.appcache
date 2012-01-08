@@ -1,0 +1,7 @@
+CACHE MANIFEST
+CACHE:
+/html/widget.html
+FALLBACK:
+/ /offline.html
+NETWORK:
+*
