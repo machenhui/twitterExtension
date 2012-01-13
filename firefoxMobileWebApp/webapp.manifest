@@ -1,7 +1,8 @@
 CACHE MANIFEST
+# VERSION 2.8.105
 CACHE:
-/html/widget.html
+/firefoxMobileWebApp/html/widget.html
 FALLBACK:
-/ /offline.html
+/ /firefoxMobileWebApp/offline.html
 NETWORK:
 *
