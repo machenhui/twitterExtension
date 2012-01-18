@@ -176,12 +176,16 @@ YUI({
            },*/
 	   background:{
 	     fullpath: '../js/background/Background.js',
-               requires: ['base','oop']
+               requires: ['base','oop','Template']
 	   },
 	   ajax:{
 		fullpath: '../js/background/Ajax.js',
                requires: ['base','oop']
 		},
+	   Template:{
+	     fullpath:'../js/template/v1.js'
+	     
+	   },	
 	  notification:{
 	       fullpath: '../js/background/Notification.js',
                requires: ['base','oop','ajax']

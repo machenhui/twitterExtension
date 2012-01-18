@@ -122,9 +122,29 @@ YUI.add('background', function(Y) {
         }
 		
 	}
+	
+	Y.extension.TemplateEngine.setLoader({
+        loader: function (packageName, setter) {
+            
+            setter("{package "+packageName+"}hello {set filter_data: false}{#userName}!");
+        }
+    });
+    
+    
+    
+    Y.extension.TemplateEngine.getTemplate({
+                    packageName: "template.main.app.recommends.guess",
+                    complete: function (template) {                     
+                                alert(template.render({
+                                    data: {
+                                    	 userName:"yinhang"
+                                    	}
+                                }));
+                    }
+                }); 
 
-
+   
 
 }, '0.1.1' /* module version */, {
-    requires: ['base','oop']
+    requires: ['base','oop','TemplateEngine']
 });
