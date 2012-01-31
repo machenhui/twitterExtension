@@ -13,14 +13,23 @@
    "content_scripts": [
     {
       "matches": ["http://www.google.com/*","http://yui.yahooapis.com/*"],
-      "css": ["/css/popup.css"],
-      "js": ["/js/popup.js","/js/popupTest.js","/js/background/Background.js","/js/background/Ajax.js","/js/background/Notification.js"]
-    }
+      "css": ["/css/popup.css","/css/contentCSS.css"],
+      "js": [
+      		"/js/popup.js",
+      		"/js/popupTest.js",
+      		"/js/background/Background.js",
+      		"/js/background/Ajax.js",
+      		"/js/background/Notification.js","/js/contentScript.js"]
+    }	
   ],
   "permissions": [
     "contextMenus",
     "tabs",
     "http://*.sohu.com/",
+     "http://*/*",
+     "https://*/*",
+     "chrome-devtools://*/*",
+     "chrome-*://*/*",
     "http://api.flickr.com/",
     "notifications"
   ]

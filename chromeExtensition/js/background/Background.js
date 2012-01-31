@@ -4,7 +4,7 @@ YUI.add('background', function(Y) {
 
     Y.extension.Background = function() {
         // expose an API
-	this._init.apply(this,arguments);
+	this.prototype._init.apply(this,arguments);
     };
 	
 	Y.extension.Background.prototype={
@@ -126,7 +126,7 @@ YUI.add('background', function(Y) {
 	Y.extension.TemplateEngine.setLoader({
         loader: function (packageName, setter) {
             
-            setter("{package "+packageName+"}hello {set filter_data: false}{#userName}!");
+            setter("{package "+packageName+"} hello {set filter_data: false}{#userName}!");
         }
     });
     
@@ -135,7 +135,7 @@ YUI.add('background', function(Y) {
     Y.extension.TemplateEngine.getTemplate({
                     packageName: "template.main.app.recommends.guess",
                     complete: function (template) {                     
-                                alert(template.render({
+                                console.log(template.render({
                                     data: {
                                     	 userName:"yinhang"
                                     	}

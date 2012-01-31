@@ -6,6 +6,7 @@
 <title>Background</title>
 
 <script src="http://yui.yahooapis.com/3.4.1/build/yui/yui-debug.js"></script>
+<link  media="screen" href="/css/contentCSS.css" rel="stylesheet" type="text/css">
 <!--
 <script src="../js/yui3/build/yui/yui-debug.js"></script>-->
 
@@ -75,7 +76,7 @@
 
 
   }); */
-
+  
   var clickHandler = function(e) {
 	    var url = e.pageUrl;
 	    var selectedText='';
@@ -199,6 +200,42 @@ YUI({
     //background.addTwitter("asdfasdf","");
    var notification=new Y.extension.Notification();
 });
+</script>
+<script type="text/javascript">
+
+function InsertFunc(tabId,changeInfo,tab)
+{
+    //让用户界面执行代码。
+   //chrome.tabs.executeScript(tabId,{code : "alert('看看这是那个页面弹出的！');"},function(){
+   //			console.log("callBack");
+   //});
+   //让用户界面执行一个文件的JS。
+   chrome.tabs.executeScript(tabId,{file : "/js/contentScript.js"},function(){
+      console.log(44444);
+   });
+   try{
+   		chrome.tabs.insertCSS(tabId, {
+     		file:"/css/contentCSS.css"
+   		}, function(){
+       		console.log(555555555555);
+   		});
+   }catch(e){
+        console.log(e);        
+   }
+}
+
+chrome.extension.onRequest.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+      sendResponse({farewell: "goodbye"});
+    else
+      sendResponse({}); // snub them.
+  });
+//注册事件的响应函数
+chrome.tabs.onUpdated.addListener(InsertFunc);
 </script>
 
 </body>
