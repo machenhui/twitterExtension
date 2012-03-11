@@ -4,7 +4,7 @@ YUI.add('PackageXML', function(Y) {
 
     Y.extension.PackageXML = function() {
         // expose an API
-	this._init.apply(this,arguments);
+	this.prototype._init.apply(this,arguments);
     };
 	
 	Y.extension.PackageXML.prototype={

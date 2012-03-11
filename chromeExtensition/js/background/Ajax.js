@@ -4,7 +4,7 @@ YUI.add('Ajax', function(Y) {
 
     Y.extension.Ajax = function() {
         // expose an API
-	this._init.apply(this,arguments);
+	   this.prototype._init.apply(this,arguments);
     };
     Y.extension.Ajax.prototype={
 	   _init:function(options){

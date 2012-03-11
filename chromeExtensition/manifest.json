@@ -19,6 +19,8 @@
       		"/js/popupTest.js",
       		"/js/background/Background.js",
       		"/js/background/Ajax.js",
+      		"/js/oauth/Login.js",
+      		"/js/oauth/SHA1.js",
       		"/js/background/Notification.js","/js/contentScript.js"]
     }	
   ],

@@ -230,7 +230,7 @@ chrome.extension.onRequest.addListener(
                 "from a content script:" + sender.tab.url :
                 "from the extension");
     if (request.greeting == "hello")
-      sendResponse({farewell: "goodbye"});
+      sendResponse({farewell: chrome.extension.getURL("/html/bind.html")});
     else
       sendResponse({}); // snub them.
   });
